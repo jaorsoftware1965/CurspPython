@@ -1,0 +1,68 @@
+# Clase 99
+# Archivos 5a
+# Archivos Posicionamiento
+
+# Uso de la Función seek y tell
+
+# Abrimos el archivo a leer
+oArchivo = open("99_ArchivosPosicionandose.py","r")
+
+# Parametros de la Función seek
+POS_INICIAL = 0
+POS_ACTUAL  = 1
+POS_FINAL   = 2
+
+# Intentamos posicionarnos al inicio del archivo
+oArchivo.seek(0,POS_INICIAL)
+oArchivo.seek(1,POS_INICIAL)
+oArchivo.seek(0,POS_ACTUAL)
+oArchivo.seek(1,POS_ACTUAL)
+oArchivo.seek(0,POS_FINAL)
+oArchivo.seek(1,POS_FINAL)
+
+
+# Se mueve al final del archivo
+oArchivo.seek(0,POS_FINAL)
+
+# Obtiene la Longitud del archivo
+longitud = oArchivo.tell()
+
+# la Imprime
+print("La longitud del Archivo es:",longitud)
+
+# Se coloca de nuevo en el inicio
+oArchivo.seek(0,POS_INICIAL)
+
+#ciclo
+while True:
+      # Obtiene la posicion actual
+      posActual = oArchivo.tell()
+      print("La posición actual es:",posActual)
+      print()
+      
+      # Solicita el desplazamiento
+      desplazamiento = input("Desplazamiento (Enter para salir)")
+      
+      # Verifica si es salida
+      if (desplazamiento ==""):
+          break
+      
+      # Verifica si hay desplazamiento
+      if (int(desplazamiento)!=0):
+          # Se desplaza
+          desplazamiento = posActual + int(desplazamiento)          
+          oArchivo.seek(desplazamiento,POS_INICIAL)
+          # Obtiene la posicion actual
+          posActual = oArchivo.tell()
+          print("La posición actual despues de desplazamiento es:",posActual)
+          print()
+          input()
+      
+      # Solicita caracteres a leer
+      caracteres = int(input("Cuantos caracteres a leer:"))
+      
+      # Lee los caracteres
+      lectura = oArchivo.read(caracteres)      
+
+# Cierra el Archivo
+oArchivo.close      
